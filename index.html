@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - 口罩map-Test-2020/02/10</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+
+<div id="app">
+  <div class="container-fluid">
+    <h1>資料更新時間: {{classes["features"][0]["properties"].updated}}</h1>
+    <h2>共查詢到: {{classes['features'].length}} 筆資料</h2>
+    <hr>
+    <hr>
+    <div class="row">
+      <div class="col-sm-3">
+        <h1>篩選條件</h1>
+        <hr>
+        <label>地區</label>
+        <h2>{{CountyName}}</h2>
+        <select class="form-control">
+          <option value="getCountyName()"></option>
+        </select>
+      </div>
+      <div class="col-sm-9"><br>
+        <table class="table table-striped">
+          <thead class="thead-dark">
+            <tr>
+              <th>藥局</th>
+              <th>地址</th>
+              <th>電話</th>
+              <th>成人口罩</th>
+              <th>兒童口罩</th>
+              <th>今日是否營業</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="cla in classes['features']">
+              <td>{{cla['properties'].name}}</td>
+              <td>{{cla['properties'].address}}</td>
+              <td>{{cla['properties'].phone}}</td>
+              <td>{{cla['properties'].mask_adult}}</td>
+              <td>{{cla['properties'].mask_child}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- partial -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
