@@ -11,27 +11,19 @@
 
 <div id="app">
   <div class="container-fluid">
-    <h1>資料更新時間: {{classes["features"][0]["properties"].updated}}</h1>
-    <h2>共查詢到: {{classes['features'].length}} 筆資料</h2>
+    <h1>資料更新時間: </h1>
+    <h2>共查詢到: </h2>
     <hr>
     <hr>
     <div class="row">
       <div class="col-sm-3">
         <h1>篩選條件</h1>
         <hr>
-        <label>地區</label>
-<<<<<<< HEAD
-        <h2>{{getCountyName}}</h2>
-        <select class="form-control">
-          <option value="getCountyName()"></option>
-        </select>
-=======
-        <h2>{{CountyName}}
-          <p>{{getCountyName()}}</p>
-        </h2>
-        <select class="form-control"></select>
-        <!-- option(value="getCountyName()")-->
->>>>>>> ba427de676fb86b1f3362ba914160d531de9b49e
+        <label>地區
+          <select class="form-control">
+            <option v-for="(c,id) in road" :value="id">{{c.CityName}}</option>
+          </select>
+        </label>
       </div>
       <div class="col-sm-9"><br>
         <table class="table table-striped">
@@ -46,7 +38,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="cla in classes['features']">
+            <tr v-for="(cla,id) in classes['features']" :id="id" v-if="cla">
               <td>{{cla['properties'].name}}</td>
               <td>{{cla['properties'].address}}</td>
               <td>{{cla['properties'].phone}}</td>

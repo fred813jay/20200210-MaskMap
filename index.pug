@@ -1,8 +1,10 @@
 #app
   .container-fluid
-    h1 資料更新時間: {{classes["features"][0]["properties"].updated}}
+    h1 資料更新時間: 
+      //- p {{classes["features"][0]["properties"].updated}}
         //- input.table-filter(type='search', data-table='order-table', placeholder='Filter')
-    h2 共查詢到: {{classes['features'].length}} 筆資料
+    h2 共查詢到: 
+      //- p 共查詢到: {{classes['features'].length}} 筆資料
     hr
     hr
     .row
@@ -10,14 +12,9 @@
         h1 篩選條件
         hr
         label 地區
-<<<<<<< HEAD
-        h2 {{getCountyName}}
-=======
-        h2 {{CountyName}}
-          p {{getCountyName()}}
->>>>>>> ba427de676fb86b1f3362ba914160d531de9b49e
-        select.form-control
-        // option(value="getCountyName()")
+          select.form-control
+            option(v-for="(c,id) in road" ,:value="id") {{c.CityName}}
+        //- // option(value="getCountyName()")
         //- label 服務費
         //- input.form-control(v-model="service_fee")
         //- br
@@ -38,7 +35,7 @@
               th 兒童口罩
               th 今日是否營業
           tbody
-            tr(v-for="cla in classes['features']")
+            tr(v-for="(cla,id) in classes['features']",:id="id",v-if="cla")
               td {{cla['properties'].name}}
               td {{cla['properties'].address}}
               td {{cla['properties'].phone}}
