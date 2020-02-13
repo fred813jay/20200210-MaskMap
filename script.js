@@ -7,6 +7,7 @@ var apiurl={
 var vm = new Vue({
   el: "#app",
   data: {
+    UpdatedTime: '',
     classes: [],
     Address : [],
     CountyName: [],
@@ -14,15 +15,43 @@ var vm = new Vue({
     RoadName: [],
     County: '',
     Zone: '',
-    Road: ''
-        // vm.address[3]["AreaList"][0].AreaName 區域名
-        // vm.address[3]["AreaList"][0].RoadList[0].RoadName 路名
+    Road: '',
   },
   mounted: function(){
     $.ajax({
       url: apiurl.road_data,
       success: function(res){
-        var r  = JSON.parse(res)
+        var r = JSON.parse(res)
+        for (let a=0 ; a< r.length ; a++){
+          for (let b=0 ; b< r[a].AreaList.length ; b++){
+            for (let c=0 ; c< r[a].AreaList[b].RoadList.length ; c++){
+              let d = r[a].AreaList[a].RoadList[c].RoadName.replace(/１/i, '1') 
+                                                           .replace(/２/i, '2') 
+                                                           .replace(/３/i, '3') 
+                                                           .replace(/４/i, '4') 
+                                                           .replace(/５/i, '5') 
+                                                           .replace(/６/i, '6') 
+                                                           .replace(/７/i, '7') 
+                                                           .replace(/８/i, '8') 
+                                                           .replace(/９/i, '9') 
+                                                           .replace(/０/i, '0')
+              console.log(d)     
+              vm.Address.push({                          ///////改由這裡推陣列
+                CityName : "請選擇縣市",
+                AreaList : {
+                  [0]: {
+                    'AreaName' : '請選擇區域名',
+                    RoadList : {
+                      [0] : {
+                        'RoadName' : '請選擇路名'
+                      }
+                    }
+                  }
+                }
+              })    
+            }
+          }
+        }     
         for (let i=0 ; i< r.length ; i++){
           if (i == 5 || i == 18){
             continue
@@ -75,6 +104,7 @@ var vm = new Vue({
               mask_adult : rest["features"][i]["properties"].mask_adult,
               mask_child : rest["features"][i]["properties"].mask_child
             })  
+            vm.UpdatedTime = rest["features"][i]["properties"].updated   //資料更新時間
           }            
         }
       },
@@ -119,9 +149,38 @@ var vm = new Vue({
         vm.RoadName.unshift("請選擇路名")        
       }
       vm.Road = "請選擇路名"
-    }
+    },
+
   },
-  methods: {
+  computed: { 
+    SearchAddress: function(){
+        let a = this.County+this.Zone+this.Road
+        let b = ""
+        if ( a =="請選擇縣市請選擇區域名請選擇路名" ){
+          return b
+        }
+        else if ( a.indexOf("請選擇區域名") > 0 ){
+          return this.County
+        }
+        else if ( a.indexOf("請選擇路名") > 0 ){
+          return this.County+this.Zone
+        }
+        else {
+          return a
+        }
+    },
+    filter_post: function(){
+      return this.classes.filter(post => {
+        return post.address.includes(this.SearchAddress)
+      })
+    }
+
+  },
+
+})
+
+// vm.classes["features"][0]["properties"].name
+
     // getCountyName: function(){
     //   for (var i=0 ; i<this.classes["features"].length ; i++){
     //     let a = this.classes["features"][i]["properties"].address
@@ -158,9 +217,3 @@ var vm = new Vue({
     //   //   return
     //   // }
     // },     
-    
-  },
-})
-
-// vm.classes["features"][0]["properties"].name
-

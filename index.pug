@@ -1,10 +1,7 @@
 #app
   .container-fluid
-    h1 資料更新時間: 
-      //- p {{classes["features"][0]["properties"].updated}}
-        //- input.table-filter(type='search', data-table='order-table', placeholder='Filter')
-    h2 共查詢到: 
-      //- p 共查詢到: {{classes['features'].length}} 筆資料
+    h1 資料更新時間: {{UpdatedTime}}
+    h2 共查詢到: {{filter_post.length}} 筆資料
     hr
     hr
     .row
@@ -21,8 +18,9 @@
         br    
         label 路名
           select.form-control(v-model="Road")
-            option(v-for="(r,id) in RoadName" ,:value="r") {{r}}            
-
+            option(v-for="(r,id) in RoadName" ,:value="r") {{r}}
+        br            
+        label {{SearchAddress}}
       .col-sm-9
         br
         table(class="table table-striped" )
@@ -35,17 +33,10 @@
               th 兒童口罩
               // th 今日是否營業
           tbody
-            tr(v-for="(cla,id) in classes",:id="id",v-if="cla")
+            tr(v-for="(cla,id) in filter_post",:id="id",v-if="cla")
               td {{cla.name}}
               td {{cla.address}}
               td {{cla.phone}}
               td {{cla.mask_adult}}
               td {{cla.mask_child}}
 
-    //- li(v-for="cla in classes['features']")
-    //-   .name 藥局:{{cla['properties'].name}}
-    //-   .address 地址:{{cla['properties'].address}}
-    //-   .phone 電話:{{cla['properties'].phone}}
-    //-   .mask_adult 成人口罩數量:{{cla['properties'].mask_adult}}
-    //-   .mask_child 兒童口罩數量:{{cla['properties'].mask_child}}
-    //-   br  
