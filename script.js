@@ -53,24 +53,29 @@ var vm = new Vue({
         var rest = JSON.parse(res)
         for (var i=0 ; i< rest["features"].length ; i++){
           let a = rest["features"][i]["properties"].address
-          let b = a.replace(/巿/i, '市')
-                   .replace(/台/i, '臺')
-                   .replace(/淡/i,'新北市淡')
-                   .replace(/桃園縣/i,'桃園市')
-                   .replace(/高雄縣/i,'高雄市')
-                   .replace(/彰化市/i,'彰化縣彰化市')
-                   .replace(/臺南縣/i,'臺南市')
-                   .replace(/屏東市/i,'屏東縣屏東市')
-                   .replace(/花蓮市/i,'花蓮縣花蓮市')
-                   .replace(/台東市/i,'臺東市')  
-                   .replace(/950/i,'臺東縣')//更改錯字
-          vm.classes.push({
-            name : rest["features"][i]["properties"].name,
-            address : b,
-            phone : rest["features"][i]["properties"].phone,
-            mask_adult : rest["features"][i]["properties"].mask_adult,
-            mask_child : rest["features"][i]["properties"].mask_child
-          })
+          if (a.length == 0){
+            continue
+          }
+          else {
+            let b = a.replace(/巿/i, '市')                        //更改錯字
+                    .replace(/台/i, '臺')
+                    .replace(/淡/i,'新北市淡')
+                    .replace(/桃園縣/i,'桃園市')
+                    .replace(/高雄縣/i,'高雄市')
+                    .replace(/彰化市/i,'彰化縣彰化市')
+                    .replace(/臺南縣/i,'臺南市')
+                    .replace(/屏東市/i,'屏東縣屏東市')
+                    .replace(/花蓮市/i,'花蓮縣花蓮市')
+                    .replace(/台東市/i,'臺東市')  
+                    .replace(/950/i,'臺東縣') 
+            vm.classes.push({
+              name : rest["features"][i]["properties"].name,
+              address : b,
+              phone : rest["features"][i]["properties"].phone,
+              mask_adult : rest["features"][i]["properties"].mask_adult,
+              mask_child : rest["features"][i]["properties"].mask_child
+            })  
+          }            
         }
       },
 
