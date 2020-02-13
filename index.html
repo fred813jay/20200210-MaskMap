@@ -30,8 +30,8 @@
           </select>
         </label><br>
         <label>路名
-          <select class="form-control">
-            <option>           </option>
+          <select class="form-control" v-model="Road">
+            <option v-for="(r,id) in RoadName" :value="r">{{r}}            </option>
           </select>
         </label>
       </div>

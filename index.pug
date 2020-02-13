@@ -20,8 +20,8 @@
             option(v-for="(z,id) in ZoneName" ,:value="z") {{z}}
         br    
         label 路名
-          select.form-control
-            option            
+          select.form-control(v-model="Road")
+            option(v-for="(r,id) in RoadName" ,:value="r") {{r}}            
 
       .col-sm-9
         br

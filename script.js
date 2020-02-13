@@ -13,7 +13,8 @@ var vm = new Vue({
     ZoneName: [],
     RoadName: [],
     County: '',
-    Zone: ''
+    Zone: '',
+    Road: ''
         // vm.address[3]["AreaList"][0].AreaName 區域名
         // vm.address[3]["AreaList"][0].RoadList[0].RoadName 路名
   },
@@ -76,11 +77,12 @@ var vm = new Vue({
     })
   },
   watch: {
-    County: (NewVal) => {                                 //監看縣市Select
+    County: (NewVal) => {                                 //監看縣市Selector
       for (let i=0 ; i< vm.Address.length ; i++){
         let New = vm.Address[i].CityName.indexOf(NewVal)
         if (New == 0){
           vm.ZoneName.length = 0
+          vm.RoadName.length = 0
           for (let y=0 ; y< vm.Address[i]["AreaList"].length ; y++){
             vm.ZoneName.push(vm.Address[i]["AreaList"][y].AreaName)
           }
@@ -88,7 +90,31 @@ var vm = new Vue({
       }
       vm.ZoneName.unshift("請選擇區域名")
       vm.Zone = "請選擇區域名"
+      if (vm.RoadName.length < 1){
+        vm.RoadName.unshift("請選擇路名")
+      }
+      vm.Road = "請選擇路名"
     },
+    Zone: () => {                                   //監看地區Selector
+      for (let i=0 ; i< vm.Address.length ; i++){
+        let FindCounty = vm.Address[i].CityName.indexOf(vm.County)
+        if (FindCounty == 0 ){
+          for (let y=0 ; y< vm.Address[i]["AreaList"].length ; y++){
+            let FindZone = vm.Address[i]["AreaList"][y].AreaName.indexOf(vm.Zone)
+            if (FindZone == 0){
+              vm.RoadName.length = 0
+              for (let z=0 ; z< vm.Address[i]["AreaList"][y].RoadList.length ; z++){
+                vm.RoadName.push(vm.Address[i]["AreaList"][y].RoadList[z].RoadName)
+              }
+            }
+          }
+        }
+      }
+      if (vm.County !== "請選擇縣市") {
+        vm.RoadName.unshift("請選擇路名")        
+      }
+      vm.Road = "請選擇路名"
+    }
   },
   methods: {
     // getCountyName: function(){
