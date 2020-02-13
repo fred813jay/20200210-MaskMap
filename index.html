@@ -19,9 +19,19 @@
       <div class="col-sm-3">
         <h1>篩選條件</h1>
         <hr>
-        <label>地區
+        <label>縣市
+          <select class="form-control" v-model="County">
+            <option v-for="(c,id) in Address" :value="c.CityName">{{c.CityName}}</option>
+          </select>
+        </label><br>
+        <label>區域
+          <select class="form-control" v-model="Zone">
+            <option v-for="(z,id) in ZoneName" :value="z">{{z}}</option>
+          </select>
+        </label><br>
+        <label>路名
           <select class="form-control">
-            <option v-for="(c,id) in road" :value="id">{{c.CityName}}</option>
+            <option>           </option>
           </select>
         </label>
       </div>
@@ -34,16 +44,16 @@
               <th>電話</th>
               <th>成人口罩</th>
               <th>兒童口罩</th>
-              <th>今日是否營業</th>
+              <!-- th 今日是否營業-->
             </tr>
           </thead>
           <tbody>
-            <tr v-for="(cla,id) in classes['features']" :id="id" v-if="cla">
-              <td>{{cla['properties'].name}}</td>
-              <td>{{cla['properties'].address}}</td>
-              <td>{{cla['properties'].phone}}</td>
-              <td>{{cla['properties'].mask_adult}}</td>
-              <td>{{cla['properties'].mask_child}}</td>
+            <tr v-for="(cla,id) in classes" :id="id" v-if="cla">
+              <td>{{cla.name}}</td>
+              <td>{{cla.address}}</td>
+              <td>{{cla.phone}}</td>
+              <td>{{cla.mask_adult}}</td>
+              <td>{{cla.mask_child}}</td>
             </tr>
           </tbody>
         </table>
@@ -51,6 +61,7 @@
     </div>
   </div>
 </div>
+
 
 <!-- partial -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>

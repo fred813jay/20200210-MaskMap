@@ -11,18 +11,18 @@
       .col-sm-3
         h1 篩選條件
         hr
-        label 地區
+        label 縣市
+          select.form-control(v-model="County")
+            option(v-for="(c,id) in Address" ,:value="c.CityName") {{c.CityName}}
+        br
+        label 區域
+          select.form-control(v-model="Zone")
+            option(v-for="(z,id) in ZoneName" ,:value="z") {{z}}
+        br    
+        label 路名
           select.form-control
-            option(v-for="(c,id) in road" ,:value="id") {{c.CityName}}
-        //- // option(value="getCountyName()")
-        //- label 服務費
-        //- input.form-control(v-model="service_fee")
-        //- br
-        //- h1 房間編輯{{edit_room_id+1}}
-        //- select.form-control(v-model="edit_room_id")
-        //-   option(v-for="(r,id) in rooms", :value="id") {{r.name}}
-        //- button.btn.btn-secondary.room_edit(@click="addroom") + 新增房間
-        //- hr
+            option            
+
       .col-sm-9
         br
         table(class="table table-striped" )
@@ -33,14 +33,14 @@
               th 電話
               th 成人口罩
               th 兒童口罩
-              th 今日是否營業
+              // th 今日是否營業
           tbody
-            tr(v-for="(cla,id) in classes['features']",:id="id",v-if="cla")
-              td {{cla['properties'].name}}
-              td {{cla['properties'].address}}
-              td {{cla['properties'].phone}}
-              td {{cla['properties'].mask_adult}}
-              td {{cla['properties'].mask_child}}
+            tr(v-for="(cla,id) in classes",:id="id",v-if="cla")
+              td {{cla.name}}
+              td {{cla.address}}
+              td {{cla.phone}}
+              td {{cla.mask_adult}}
+              td {{cla.mask_child}}
 
     //- li(v-for="cla in classes['features']")
     //-   .name 藥局:{{cla['properties'].name}}
