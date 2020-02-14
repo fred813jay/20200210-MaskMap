@@ -2,6 +2,7 @@
  20200210-MaskTest  
 https://fred813jay.github.io/20200210-MaskTest/
 
+=======尚未完成(基本功能已可使用)=======  
 口罩API串接  
 台灣地址API串接  
 將資料表格化  
