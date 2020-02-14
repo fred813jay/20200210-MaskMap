@@ -1,8 +1,10 @@
 #app
   .container-fluid(v-if="classes.length == 0") 
     .row.justify-content-center.align-items-center
-      br
-      h1.text-center 資料載入中，請稍等。
+      .col-xs-auto.col-sm-12.col-md-10.col-lg-8
+        br
+        h1.display-1.text-center 資料載入中，請稍等。
+        .loader-inner.ball-pulse
   .container-fluid(v-else)
     .row.justify-content-center.align-items-center
       .col-xs-auto.col-sm-12.col-md-10.col-lg-8

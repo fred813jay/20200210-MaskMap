@@ -152,7 +152,5 @@ var vm = new Vue({
         return post.address.includes(this.SearchAddress)
       })
     }
-
   },
-
 })
