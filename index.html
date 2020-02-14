@@ -10,12 +10,17 @@
 <!-- partial:index.partial.html -->
 
 <div id="app">
-  <div class="container-fluid">
+  <div class="div" v-if="filter_post.length == 0">
+    <h1>資料載入中，請稍等。</h1>
+  </div>
+  <div class="container-fluid" v-else>
     <div class="row">
       <div class="col-sm-auto col-lg-8 offset-lg-2">
+        <!-- .div(v-if="filter_post.length == 0")-->
+        <!--   h1 資料載入中，請稍等。-->
+        <!-- .div(v-else)-->
         <h1>資料更新時間: {{UpdatedTime}}</h1>
         <h2>共查詢到: {{filter_post.length}} 筆資料</h2>
-        <h1 v-if="filter_post.length == 0">載入中!!!</h1>
         <hr>
         <hr>
       </div>

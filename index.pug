@@ -1,12 +1,16 @@
 #app
-  .container-fluid
+  .div(v-if="filter_post.length == 0")
+    h1 資料載入中，請稍等。
+  .container-fluid(v-else)
     .row
       .col-sm-auto.col-lg-8.offset-lg-2
+        // .div(v-if="filter_post.length == 0")
+        //   h1 資料載入中，請稍等。
+        // .div(v-else)
         h1 資料更新時間: {{UpdatedTime}}
         h2 共查詢到: {{filter_post.length}} 筆資料
-        h1(v-if="filter_post.length == 0") 載入中!!!
         hr
-        hr
+        hr  
     .row
       .col-sm-auto.col-lg-8.offset-lg-2
         h1 篩選條件
