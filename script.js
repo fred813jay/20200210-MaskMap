@@ -25,30 +25,31 @@ var vm = new Vue({
         for (let a=0 ; a< r.length ; a++){
           for (let b=0 ; b< r[a].AreaList.length ; b++){
             for (let c=0 ; c< r[a].AreaList[b].RoadList.length ; c++){
-              let d = r[a].AreaList[a].RoadList[c].RoadName.replace(/１/i, '1') 
-                                                           .replace(/２/i, '2') 
-                                                           .replace(/３/i, '3') 
-                                                           .replace(/４/i, '4') 
-                                                           .replace(/５/i, '5') 
-                                                           .replace(/６/i, '6') 
-                                                           .replace(/７/i, '7') 
-                                                           .replace(/８/i, '8') 
-                                                           .replace(/９/i, '9') 
-                                                           .replace(/０/i, '0')
-              console.log(d)     
-              vm.Address.push({                          ///////改由這裡推陣列
-                CityName : "請選擇縣市",
-                AreaList : {
-                  [0]: {
-                    'AreaName' : '請選擇區域名',
-                    RoadList : {
-                      [0] : {
-                        'RoadName' : '請選擇路名'
-                      }
-                    }
-                  }
-                }
-              })    
+            //   let d = r[a].AreaList[a].RoadList[c].RoadName
+            //   let e = d.replace(/１/i, '1') 
+            //                                                .replace(/２/i, '2') 
+            //                                                .replace(/３/i, '3') 
+            //                                                .replace(/４/i, '4') 
+            //                                                .replace(/５/i, '5') 
+            //                                                .replace(/６/i, '6') 
+            //                                                .replace(/７/i, '7') 
+            //                                                .replace(/８/i, '8') 
+            //                                                .replace(/９/i, '9') 
+            //                                                .replace(/０/i, '0')
+            // //   console.log(d)     
+            //   vm.Address.push({                          ///////改由這裡推陣列
+            //     CityName : "請選擇縣市",
+            //     AreaList : {
+            //       [0]: {
+            //         'AreaName' : '請選擇區域名',
+            //         RoadList : {
+            //           [0] : {
+            //             'RoadName' : '請選擇路名'
+            //           }
+            //         }
+            //       }
+            //     }
+            //   })    
             }
           }
         }     
