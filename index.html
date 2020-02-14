@@ -17,27 +17,36 @@
     <hr>
     <hr>
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-12">
         <h1>篩選條件</h1>
         <hr>
-        <label>縣市
-          <select class="form-control" v-model="County">
-            <option v-for="(c,id) in Address" :value="c.CityName">{{c.CityName}}</option>
-          </select>
-        </label><br>
-        <label>區域
-          <select class="form-control" v-model="Zone">
-            <option v-for="(z,id) in Zone_Name" :value="z">{{z}}</option>
-          </select>
-        </label><br>
-        <label>路名
-          <select class="form-control" v-model="Road">
-            <option v-for="(r,id) in Road_Name" :value="r">{{r}}</option>
-          </select>
-        </label><br>
-        <label>{{SearchAddress}}</label>
+        <div class="row">
+          <div class="col-sm-auto">
+            <label>縣市
+              <select class="form-control" v-model="County">
+                <option v-for="(c,id) in Address" :value="c.CityName">{{c.CityName}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="col-sm-auto">
+            <label>區域
+              <select class="form-control" v-model="Zone">
+                <option v-for="(z,id) in Zone_Name" :value="z">{{z}}</option>
+              </select>
+            </label>
+          </div>
+          <div class="col-sm-auto">   
+            <label>路名
+              <select class="form-control" v-model="Road">
+                <option v-for="(r,id) in Road_Name" :value="r">{{r}}    </option>
+              </select>
+            </label>
+          </div>
+        </div>
       </div>
-      <div class="col-sm-9"><br>
+    </div>
+    <div class="row">
+      <div class="col-sm-auto col-md-8 offset-md-2"><br>
         <table class="table table-striped">
           <thead class="thead-dark">
             <tr>
@@ -55,7 +64,7 @@
               <td>{{cla.address}}</td>
               <td>{{cla.phone}}</td>
               <td>{{cla.mask_adult}}</td>
-              <td>{{cla.mask_child}}</td>
+              <td>{{cla.mask_child}}      </td>
             </tr>
           </tbody>
         </table>
