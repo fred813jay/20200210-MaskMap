@@ -10,9 +10,8 @@ var vm = new Vue({
     UpdatedTime: '',
     classes: [],
     Address : [],
-    CountyName: [],
-    ZoneName: [],
-    RoadName: [],
+    Zone_Name: [],
+    Road_Name: [],
     County: '',
     Zone: '',
     Road: '',
@@ -22,37 +21,44 @@ var vm = new Vue({
       url: apiurl.road_data,
       success: function(res){
         var r = JSON.parse(res)
-        for (let a=0 ; a< r.length ; a++){
-          for (let b=0 ; b< r[a].AreaList.length ; b++){
-            for (let c=0 ; c< r[a].AreaList[b].RoadList.length ; c++){
-            //   let d = r[a].AreaList[a].RoadList[c].RoadName
-            //   let e = d.replace(/１/i, '1') 
-            //                                                .replace(/２/i, '2') 
-            //                                                .replace(/３/i, '3') 
-            //                                                .replace(/４/i, '4') 
-            //                                                .replace(/５/i, '5') 
-            //                                                .replace(/６/i, '6') 
-            //                                                .replace(/７/i, '7') 
-            //                                                .replace(/８/i, '8') 
-            //                                                .replace(/９/i, '9') 
-            //                                                .replace(/０/i, '0')
-            // //   console.log(d)     
-            //   vm.Address.push({                          ///////改由這裡推陣列
-            //     CityName : "請選擇縣市",
-            //     AreaList : {
-            //       [0]: {
-            //         'AreaName' : '請選擇區域名',
-            //         RoadList : {
-            //           [0] : {
-            //             'RoadName' : '請選擇路名'
-            //           }
-            //         }
-            //       }
-            //     }
-            //   })    
-            }
-          }
-        }     
+        // for (let a=0 ; a< r.length ; a++){
+        //   for (let b=0 ; b< r[a].AreaList.length ; b++){
+        //     for (let c=0 ; c< r[a].AreaList[b].RoadList.length ; c++){
+        //         // let data = r[a].AreaList[a].RoadList[c].RoadName
+        //         // if (data.length == 0){
+        //         //     continue
+        //         // }
+        //         // else {
+        //         //     console.log(data)
+        //         // }
+        //     //   let d = r[a].AreaList[a].RoadList[c].RoadName
+        //     //   let e = d.replace(/１/i, '1') 
+        //     //                                                .replace(/２/i, '2') 
+        //     //                                                .replace(/３/i, '3') 
+        //     //                                                .replace(/４/i, '4') 
+        //     //                                                .replace(/５/i, '5') 
+        //     //                                                .replace(/６/i, '6') 
+        //     //                                                .replace(/７/i, '7') 
+        //     //                                                .replace(/８/i, '8') 
+        //     //                                                .replace(/９/i, '9') 
+        //     //                                                .replace(/０/i, '0')
+        //     // //   console.log(d)     
+        //     //   vm.Address.push({                          ///////改由這裡推陣列
+        //     //     CityName : "請選擇縣市",
+        //     //     AreaList : {
+        //     //       [0]: {
+        //     //         'AreaName' : '請選擇區域名',
+        //     //         RoadList : {
+        //     //           [0] : {
+        //     //             'RoadName' : '請選擇路名'
+        //     //           }
+        //     //         }
+        //     //       }
+        //     //     }
+        //     //   })    
+        //     }
+        //   }
+        // }     
         for (let i=0 ; i< r.length ; i++){
           if (i == 5 || i == 18){
             continue
@@ -98,6 +104,16 @@ var vm = new Vue({
                     .replace(/花蓮市/i,'花蓮縣花蓮市')
                     .replace(/台東市/i,'臺東市')  
                     .replace(/950/i,'臺東縣') 
+                    .replace(/1/i, '１')
+                    .replace(/2/i, '２') 
+                    .replace(/3/i, '３') 
+                    .replace(/4/i, '４') 
+                    .replace(/5/i, '５') 
+                    .replace(/6/i, '６') 
+                    .replace(/7/i, '７') 
+                    .replace(/8/i, '８') 
+                    .replace(/9/i, '９') 
+                    .replace(/0/i, '０')
             vm.classes.push({
               name : rest["features"][i]["properties"].name,
               address : b,
@@ -117,17 +133,17 @@ var vm = new Vue({
       for (let i=0 ; i< vm.Address.length ; i++){
         let New = vm.Address[i].CityName.indexOf(NewVal)
         if (New == 0){
-          vm.ZoneName.length = 0
-          vm.RoadName.length = 0
+          vm.Zone_Name.length = 0
+          vm.Road_Name.length = 0
           for (let y=0 ; y< vm.Address[i]["AreaList"].length ; y++){
-            vm.ZoneName.push(vm.Address[i]["AreaList"][y].AreaName)
+            vm.Zone_Name.push(vm.Address[i]["AreaList"][y].AreaName)
           }
         }
       }
-      vm.ZoneName.unshift("請選擇區域名")
+      vm.Zone_Name.unshift("請選擇區域名")
       vm.Zone = "請選擇區域名"
-      if (vm.RoadName.length < 1){
-        vm.RoadName.unshift("請選擇路名")
+      if (vm.Road_Name.length < 1){
+        vm.Road_Name.unshift("請選擇路名")
       }
       vm.Road = "請選擇路名"
     },
@@ -138,16 +154,16 @@ var vm = new Vue({
           for (let y=0 ; y< vm.Address[i]["AreaList"].length ; y++){
             let FindZone = vm.Address[i]["AreaList"][y].AreaName.indexOf(vm.Zone)
             if (FindZone == 0){
-              vm.RoadName.length = 0
+              vm.Road_Name.length = 0
               for (let z=0 ; z< vm.Address[i]["AreaList"][y].RoadList.length ; z++){
-                vm.RoadName.push(vm.Address[i]["AreaList"][y].RoadList[z].RoadName)
+                vm.Road_Name.push(vm.Address[i]["AreaList"][y].RoadList[z].RoadName)
               }
             }
           }
         }
       }
       if (vm.County !== "請選擇縣市") {
-        vm.RoadName.unshift("請選擇路名")        
+        vm.Road_Name.unshift("請選擇路名")        
       }
       vm.Road = "請選擇路名"
     },
@@ -179,42 +195,3 @@ var vm = new Vue({
   },
 
 })
-
-// vm.classes["features"][0]["properties"].name
-
-    // getCountyName: function(){
-    //   for (var i=0 ; i<this.classes["features"].length ; i++){
-    //     let a = this.classes["features"][i]["properties"].address
-    //     let b = a.replace(/巿/i, '市').replace(/臺/i, '台').replace(/淡/i,'新北市淡')  //更改錯字
-    //     let c = b.indexOf('市')
-    //     let d = b.indexOf('縣')
-    //     if (d == -1){                                       //判斷為市
-    //       var addr = b.substring(c-2,c+1)
-    //     }
-    //     else if (c == -1){                                  //判斷為縣
-    //       var addr = b.substring(d-2,d+1)
-    //     }
-    //     else if (c == -1 && d == -1){                      
-    //       var addr = ""
-    //     }
-    //     let result = this.CountyName.find(function(name, index, array){
-    //       return name === addr;   
-    //     });
-    //     if (result === undefined && addr.length>0){
-    //       this.CountyName.push(addr)
-    //       console.log(i+'  '+addr)
-    //     }
-
-    //     // 以下為地區
-    //     // let zone = this.classes["features"][i]["properties"].address.substring(3,6)
-    //     // let result1 = this.ZoneName.find(function(name, index, array){
-    //     //   return name === zone;   
-    //     // });   
-    //     // if (result1 === undefined){
-    //     //   this.ZoneName.push(zone)
-    //     // }             
-    //   }
-    //   // if (this.CountyName.length == 0){
-    //   //   return
-    //   // }
-    // },     

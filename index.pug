@@ -14,11 +14,11 @@
         br
         label 區域
           select.form-control(v-model="Zone")
-            option(v-for="(z,id) in ZoneName" ,:value="z") {{z}}
+            option(v-for="(z,id) in Zone_Name" ,:value="z") {{z}}
         br    
         label 路名
           select.form-control(v-model="Road")
-            option(v-for="(r,id) in RoadName" ,:value="r") {{r}}
+            option(v-for="(r,id) in Road_Name" ,:value="r") {{r}}
         br            
         label {{SearchAddress}}
       .col-sm-9
