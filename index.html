@@ -11,36 +11,37 @@
 
 <div id="app">
   <div class="container-fluid">
-    <h1>資料更新時間: {{UpdatedTime}}</h1>
-    <h2>共查詢到: {{filter_post.length}} 筆資料</h2>
-    <h1 v-if="filter_post.length == 0">載入中!!!</h1>
-    <hr>
-    <hr>
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-sm-auto col-md-8 offset-md-2">
+        <h1>資料更新時間: {{UpdatedTime}}</h1>
+        <h2>共查詢到: {{filter_post.length}} 筆資料</h2>
+        <h1 v-if="filter_post.length == 0">載入中!!!</h1>
+        <hr>
+        <hr>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-auto col-md-8 offset-md-2">
         <h1>篩選條件</h1>
         <hr>
         <div class="row">
           <div class="col-sm-auto">
-            <label>縣市
-              <select class="form-control" v-model="County">
-                <option v-for="(c,id) in Address" :value="c.CityName">{{c.CityName}}</option>
-              </select>
-            </label>
+            <!-- label 縣市-->
+            <select class="form-control" v-model="County">
+              <option v-for="(c,id) in Address" :value="c.CityName">{{c.CityName}}</option>
+            </select>
           </div>
           <div class="col-sm-auto">
-            <label>區域
-              <select class="form-control" v-model="Zone">
-                <option v-for="(z,id) in Zone_Name" :value="z">{{z}}</option>
-              </select>
-            </label>
+            <!-- label 區域-->
+            <select class="form-control" v-model="Zone">
+              <option v-for="(z,id) in Zone_Name" :value="z">{{z}}</option>
+            </select>
           </div>
           <div class="col-sm-auto">   
-            <label>路名
-              <select class="form-control" v-model="Road">
-                <option v-for="(r,id) in Road_Name" :value="r">{{r}}    </option>
-              </select>
-            </label>
+            <!-- label 路名-->
+            <select class="form-control" v-model="Road">
+              <option v-for="(r,id) in Road_Name" :value="r">{{r}}    </option>
+            </select>
           </div>
         </div>
       </div>
