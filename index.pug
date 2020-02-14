@@ -1,35 +1,35 @@
 #app
-  .div(v-if="classes.length == 0")
-    h1 資料載入中，請稍等。
+  .container-fluid(v-if="classes.length == 0") 
+    .row.justify-content-center.align-items-center
+      br
+      h1.text-center 資料載入中，請稍等。
   .container-fluid(v-else)
-    .row
-      .col-sm-auto.col-lg-8.offset-lg-2
-        // .div(v-if="filter_post.length == 0")
-        //   h1 資料載入中，請稍等。
-        // .div(v-else)
-        h1 資料更新時間: {{UpdatedTime}}
-        h2 共查詢到: {{filter_post.length}} 筆資料
+    .row.justify-content-center.align-items-center
+      .col-xs-auto.col-sm-12.col-md-10.col-lg-8
+        h1.text-center 資料更新時間: 
+        h1.text-center {{UpdatedTime}}
+        h2.text-center 共查詢到: {{filter_post.length}} 筆資料
         hr
         hr  
-    .row
-      .col-sm-auto.col-lg-8.offset-lg-2
-        h1 篩選條件
+    .row.justify-content-center.align-items-center
+      .col-xs-auto.col-sm-12.col-md-10.col-lg-8
+        h1.text-center 篩選條件
         hr
         .row
-          .col-sm-auto
+          .col-xs-auto.col-sm-4.col-md-4.col-lg-4
             // label 縣市
             select.form-control(v-model="County")
               option(v-for="(c,id) in Address" ,:value="c.CityName") {{c.CityName}}
-          .col-sm-auto
+          .col-xs-auto.col-sm-4.col-md-4.col-lg-4
             // label 區域
             select.form-control(v-model="Zone")
               option(v-for="(z,id) in Zone_Name" ,:value="z") {{z}}
-          .col-sm-auto    
+          .col-xs-auto.col-sm-4.col-md-4.col-lg-4
             // label 路名
             select.form-control(v-model="Road")
               option(v-for="(r,id) in Road_Name" ,:value="r") {{r}}    
-    .row
-      .col-sm-auto.col-lg-8.offset-lg-2
+    .row.justify-content-center.align-items-center
+      .col-xs-auto.col-sm-12.col-md-10.col-lg-8
         br
         table(class="table table-striped" )
           thead(class="thead-dark")

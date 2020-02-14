@@ -10,39 +10,39 @@
 <!-- partial:index.partial.html -->
 
 <div id="app">
-  <div class="div" v-if="classes.length == 0">
-    <h1>資料載入中，請稍等。</h1>
+  <div class="container-fluid" v-if="classes.length == 0"> 
+    <div class="row justify-content-center align-items-center"><br>
+      <h1 class="text-center">資料載入中，請稍等。</h1>
+    </div>
   </div>
   <div class="container-fluid" v-else>
-    <div class="row">
-      <div class="col-sm-auto col-lg-8 offset-lg-2">
-        <!-- .div(v-if="filter_post.length == 0")-->
-        <!--   h1 資料載入中，請稍等。-->
-        <!-- .div(v-else)-->
-        <h1>資料更新時間: {{UpdatedTime}}</h1>
-        <h2>共查詢到: {{filter_post.length}} 筆資料</h2>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-xs-auto col-sm-12 col-md-10 col-lg-8">
+        <h1 class="text-center">資料更新時間: </h1>
+        <h1 class="text-center">{{UpdatedTime}}</h1>
+        <h2 class="text-center">共查詢到: {{filter_post.length}} 筆資料</h2>
         <hr>
         <hr>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-auto col-lg-8 offset-lg-2">
-        <h1>篩選條件</h1>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-xs-auto col-sm-12 col-md-10 col-lg-8">
+        <h1 class="text-center">篩選條件</h1>
         <hr>
         <div class="row">
-          <div class="col-sm-auto">
+          <div class="col-xs-auto col-sm-4 col-md-4 col-lg-4">
             <!-- label 縣市-->
             <select class="form-control" v-model="County">
               <option v-for="(c,id) in Address" :value="c.CityName">{{c.CityName}}</option>
             </select>
           </div>
-          <div class="col-sm-auto">
+          <div class="col-xs-auto col-sm-4 col-md-4 col-lg-4">
             <!-- label 區域-->
             <select class="form-control" v-model="Zone">
               <option v-for="(z,id) in Zone_Name" :value="z">{{z}}</option>
             </select>
           </div>
-          <div class="col-sm-auto">   
+          <div class="col-xs-auto col-sm-4 col-md-4 col-lg-4">
             <!-- label 路名-->
             <select class="form-control" v-model="Road">
               <option v-for="(r,id) in Road_Name" :value="r">{{r}}    </option>
@@ -51,8 +51,8 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-auto col-lg-8 offset-lg-2"><br>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-xs-auto col-sm-12 col-md-10 col-lg-8"><br>
         <table class="table table-striped">
           <thead class="thead-dark">
             <tr>
@@ -78,7 +78,6 @@
     </div>
   </div>
 </div>
-
 <!-- partial -->
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
