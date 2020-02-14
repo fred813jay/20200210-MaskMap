@@ -1,4 +1,3 @@
-
 var apiurl={
   mask_data:"https://raw.githubusercontent.com/kiang/pharmacies/master/json/points.json",
   road_data:"https://raw.githubusercontent.com/donma/TaiwanAddressCityAreaRoadChineseEnglishJSON/master/AllData.json"
@@ -21,7 +20,6 @@ var vm = new Vue({
       url: apiurl.road_data,
       success: function(res){
         var r = JSON.parse(res)
-        console.log(r)
         for (let i=0 ; i< r.length ; i++){                    //去除 第5項(釣魚臺) & 第18項(南海島)
           if (i == 5 || i == 18){
             continue
@@ -67,7 +65,7 @@ var vm = new Vue({
                     .replace(/花蓮市/i,'花蓮縣花蓮市')
                     .replace(/台東市/i,'臺東市')  
                     .replace(/950/i,'臺東縣') 
-                    .replace(/1/i, '１')                          //因台灣地址API數字為大寫，故轉換
+                    .replace(/1/i, '１')                          //因台灣地址API數字為全形，故轉換
                     .replace(/2/i, '２') 
                     .replace(/3/i, '３') 
                     .replace(/4/i, '４') 
@@ -110,7 +108,7 @@ var vm = new Vue({
       }
       vm.Road = "請選擇路名"
     },
-    Zone: () => {                                   //監看地區Selector
+    Zone: () => {                                          //監看地區Selector
       for (let i=0 ; i< vm.Address.length ; i++){
         let FindCounty = vm.Address[i].CityName.indexOf(vm.County)
         if (FindCounty == 0 ){

@@ -2,6 +2,7 @@
   .container-fluid
     h1 資料更新時間: {{UpdatedTime}}
     h2 共查詢到: {{filter_post.length}} 筆資料
+    h1(v-if="filter_post.length == 0") 載入中!!!
     hr
     hr
     .row
