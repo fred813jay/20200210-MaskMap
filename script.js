@@ -14,6 +14,9 @@ var vm = new Vue({
     County: '',
     Zone: '',
     Road: '',
+    page_count: 10,
+    page_index: 0,
+    page_num: []
   },
   mounted: function(){
     $.ajax({
@@ -135,6 +138,7 @@ var vm = new Vue({
     SearchAddress: function(){                             //將所有Selector字串合併
         let a = this.County+this.Zone+this.Road
         let b = ""
+        this.page_index = 0;
         if ( a =="請選擇縣市請選擇區域名請選擇路名" ){
           return b
         }
@@ -148,10 +152,62 @@ var vm = new Vue({
           return a
         }
     },
-    filter_post: function(){                               //filter
+    filter_post(){                               //filter
       return this.classes.filter(post => {
         return post.address.includes(this.SearchAddress)
       })
-    }
+    },
+    page_total(){                               //總頁數
+      let parse = parseInt(this.filter_post.length / this.page_count)
+      let og = this.filter_post.length / this.page_count
+      if (og == parse){                 
+          return og-1
+      }
+      else {
+          return parse
+      }
+    },
+    sliced_filter_post(){                         //第幾筆
+      let start = this.page_index * this.page_count;
+      let end = (this.page_index+1) * this.page_count;
+      return this.filter_post.slice(start,end)
+    },
+    sliced_page_total(){                          //每第十頁切換
+      this.page_num.length = 0  
+      let len = 9
+      let i = 0
+      if (this.page_total > len){
+        if (this.page_index > len && this.page_index <= this.page_total){
+          let indexMultiple = Math.floor(this.page_index / 10)
+          len = 10*(indexMultiple+1)-1
+          if (this.page_total < len){
+            len = this.page_total
+          }
+          i = 10*indexMultiple
+        }
+      }
+      else {
+        len = this.page_total
+        i = 0
+      }
+      for ( i ; i <= len ; i++){
+        this.page_num.push(i)
+      }
+      return this.page_num
+    },  
+  },
+  methods: {
+    page_button(num){
+      let Newindex = this.page_index + num
+      if (Newindex > this.page_total){
+        return
+      }     
+      else if (Newindex < 0) {
+        return
+      }
+      else {
+        this.page_index = Newindex
+      }
+    },
   },
 })

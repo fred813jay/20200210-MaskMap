@@ -28,7 +28,6 @@
       <div class="col-xs-auto col-sm-12 col-md-10 col-lg-8">
         <h1 class="text-center">資料更新時間: </h1>
         <h1 class="text-center">{{UpdatedTime}}</h1>
-        <h2 class="text-center">共查詢到: {{filter_post.length}} 筆資料</h2>
         <hr>
         <hr>
       </div>
@@ -53,35 +52,47 @@
           <div class="col-xs-auto col-sm-4 col-md-4 col-lg-4">
             <!-- label 路名-->
             <select class="form-control" v-model="Road">
-              <option v-for="(r,id) in Road_Name" :value="r">{{r}}    </option>
+              <option v-for="(r,id) in Road_Name" :value="r">{{r}}  </option>
             </select>
           </div>
         </div>
+        <hr>
       </div>
     </div>
     <div class="row justify-content-center align-items-center">
-      <div class="col-xs-auto col-sm-12 col-md-10 col-lg-8"><br>
-        <table class="table table-striped">
-          <thead class="thead-dark">
-            <tr>
-              <th>藥局</th>
-              <th>地址</th>
-              <th>電話</th>
-              <th>成人口罩</th>
-              <th>兒童口罩</th>
-              <!-- th 今日是否營業-->
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(cla,id) in filter_post" :id="id" v-if="cla">
-              <td>{{cla.name}}</td>
-              <td>{{cla.address}}</td>
-              <td>{{cla.phone}}</td>
-              <td>{{cla.mask_adult}}</td>
-              <td>{{cla.mask_child}}      </td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="col-xs-auto col-sm-12 col-md-10 col-lg-8">         
+        <h2 class="text-center">共查詢到: {{filter_post.length}} 筆資料     </h2>
+        <button class="btn btn-primary btn-md" v-if="page_total+1&gt;10 &amp;&amp; page_index &gt;=10" @click="page_button(-10)">上十頁</button>
+        <button class="btn btn-primary btn-md" v-if="page_index &gt;0" @click="page_button(-1)">上一頁</button>
+        <button class="btn btn-primary btn-md" v-for="(page,id) in sliced_page_total" @click="page_index=page" :id="id">{{page+1}}</button>
+        <button class="btn btn-primary btn-md" v-if="page_index &lt; page_total" @click="page_button(+1)">下一頁</button>
+        <button class="btn btn-primary btn-md" v-if="page_total+1&gt;10 &amp;&amp; page_total-page_index &gt;=10" @click="page_button(+10)">下十頁 </button>
+      </div>
+    </div>
+    <div class="row justify-content-center align-items-center">
+      <div class="col-xs-auto col-sm-12 col-md-10 col-lg-8">     
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>藥局</th>
+                <th>地址</th>
+                <th>電話</th>
+                <th>成人口罩</th>
+                <th>兒童口罩</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(cla,id) in sliced_filter_post" :id="id" v-if="cla">
+                <td>{{cla.name}}</td>
+                <td>{{cla.address}}</td>
+                <td>{{cla.phone}}</td>
+                <td>{{cla.mask_adult}}</td>
+                <td>{{cla.mask_child}}    </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
