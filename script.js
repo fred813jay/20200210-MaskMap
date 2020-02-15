@@ -56,7 +56,8 @@ var vm = new Vue({
           else {
             let b = a.replace(/巿/i, '市')                        //更改錯字
                     .replace(/台/i, '臺')
-                    .replace(/淡/i,'新北市淡')
+                    .replace(/淡水區新市/i,'新北市淡水區新市')
+                    .replace(/新北市新北市/i,'新北市')
                     .replace(/桃園縣/i,'桃園市')
                     .replace(/高雄縣/i,'高雄市')
                     .replace(/彰化市/i,'彰化縣彰化市')
