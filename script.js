@@ -15,8 +15,9 @@ var vm = new Vue({
     Zone: '',
     Road: '',
     page_count: 10,
-    page_index: 0,
-    page_num: []
+    page_index: '',
+    page_num: [],
+    NowBtn: ''
   },
   mounted: function(){
     $.ajax({
@@ -132,7 +133,6 @@ var vm = new Vue({
       }
       vm.Road = "請選擇路名"
     },
-
   },
   computed: { 
     SearchAddress: function(){                             //將所有Selector字串合併
@@ -205,7 +205,7 @@ var vm = new Vue({
       else if (Newindex < 0) {
         return
       }
-      else {
+      else {     
         this.page_index = Newindex
       }
     },
