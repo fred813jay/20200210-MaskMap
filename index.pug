@@ -1,26 +1,26 @@
 #app
   .container-fluid(v-if="classes.length == 0") 
     .row.justify-content-center.align-items-center(style='margin-top: 10rem;')
-      .col-xs-auto.col-sm-12.col-md-10.col-lg-8
+      .col-xs-auto.col-sm-12.col-md-12.col-lg-10
         h1.display-1.text-center Loading...
         br
         br
         br
     .row.justify-content-center.align-items-center
-      .col-xs-auto.col-sm-12.col-md-10.col-lg-8  
+      .col-xs-auto.col-sm-12.col-md-12.col-lg-10
         .d-flex.justify-content-center
           .spinner-border.text-info(style='width: 10rem; height: 10rem;' role='status')
             span.sr-only Loading...
 
   .container-fluid(v-else)
     .row.justify-content-center.align-items-center
-      .col-xs-auto.col-sm-12.col-md-10.col-lg-8
+      .col-xs-auto.col-sm-12.col-md-12.col-lg-10
         h1.text-center 資料更新時間: 
         h1.text-center {{UpdatedTime}}
         hr
         hr  
     .row.justify-content-center.align-items-center
-      .col-xs-auto.col-sm-12.col-md-10.col-lg-8
+      .col-xs-auto.col-sm-12.col-md-12.col-lg-10
         h1.text-center 篩選條件
         hr
         .row
@@ -38,15 +38,17 @@
               option(v-for="(r,id) in Road_Name" ,:value="r") {{r}}  
         hr  
     .row.justify-content-center.align-items-center
-      .col-xs-auto.col-sm-12.col-md-10.col-lg-8          
-        h2.text-center 共查詢到: {{filter_post.length}} 筆資料     
-        button.btn.btn-primary.btn-md(v-if="page_total+1>10 && page_index >=10",@click="page_button(-10)") 上十頁
-        button.btn.btn-primary.btn-md(v-if="page_index >0",@click="page_button(-1)") 上一頁
-        button.btn.btn-primary.btn-md(v-for="(page,id) in sliced_page_total",@click="page_index=page",:id="id") {{page+1}}
-        button.btn.btn-primary.btn-md(v-if="page_index < page_total",@click="page_button(+1)") 下一頁
-        button.btn.btn-primary.btn-md(v-if="page_total+1>10 && page_total-page_index >=10",@click="page_button(+10)") 下十頁 
+      .col-xs-auto.col-sm-12.col-md-12.col-lg-10        
+        h2.text-center 共查詢到: {{filter_post.length}} 筆資料 
+        br    
+        .div.text-center    
+          button.btn.btn-primary.btn-lg(v-if="page_total+1>10 && page_index >=10",@click="page_button(-10)") 上十頁
+          button.btn.btn-primary.btn-lg(v-if="page_index >0",@click="page_button(-1)") 上一頁
+          button.btn.btn-primary.btn-lg.mr-1(v-for="(page,id) in sliced_page_total",@click="page_index=page",:id="id") {{page+1}}
+          button.btn.btn-primary.btn-lg(v-if="page_index < page_total",@click="page_button(+1)") 下一頁
+          button.btn.btn-primary.btn-lg(v-if="page_total+1>10 && page_total-page_index >=10",@click="page_button(+10)") 下十頁 
     .row.justify-content-center.align-items-center
-      .col-xs-auto.col-sm-12.col-md-10.col-lg-8      
+      .col-xs-auto.col-sm-12.col-md-12.col-lg-10    
         .table-responsive
           table(class="table table-striped" )
             thead(class="thead-dark")
