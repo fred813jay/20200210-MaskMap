@@ -14,7 +14,7 @@ var vm = new Vue({
     County: '',
     Zone: '',
     Road: '',
-    page_count: 10,
+    page_count: 15,
     page_index: '',
     page_num: [],
     NowBtn: ''
