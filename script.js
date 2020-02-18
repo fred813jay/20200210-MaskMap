@@ -29,6 +29,30 @@ var vm = new Vue({
             continue
           }
           else {
+            for (let x=0 ; x< r[i].AreaList.length ; x++){
+              for (let y=0 ; y< r[i].AreaList[x].RoadList.length ; y++){
+                  let a = r[i].AreaList[x].RoadList[y].RoadName
+                  let NewRoadName = a.replace(/1段/i, '一段')
+                                     .replace(/2段/i, '二段') 
+                                     .replace(/3段/i, '三段') 
+                                     .replace(/4段/i, '四段') 
+                                     .replace(/5段/i, '五段') 
+                                     .replace(/6段/i, '六段') 
+                                     .replace(/7段/i, '七段') 
+                                     .replace(/8段/i, '八段') 
+                                     .replace(/9段/i, '九段') 
+                                     .replace(/１段/i, '一段')                          
+                                     .replace(/２段/i, '二段') 
+                                     .replace(/３段/i, '三段') 
+                                     .replace(/４段/i, '四段') 
+                                     .replace(/５段/i, '五段') 
+                                     .replace(/６段/i, '六段') 
+                                     .replace(/７段/i, '七段') 
+                                     .replace(/８段/i, '八段') 
+                                     .replace(/９段/i, '九段') 
+                  r[i].AreaList[x].RoadList[y].RoadName = NewRoadName
+              }
+            }
             vm.Address.push(r[i])
           }
         }
@@ -70,16 +94,24 @@ var vm = new Vue({
                     .replace(/花蓮市/i,'花蓮縣花蓮市')
                     .replace(/台東市/i,'臺東市')  
                     .replace(/950/i,'臺東縣') 
-                    .replace(/1/i, '１')                          //因台灣地址API數字為全形，故轉換
-                    .replace(/2/i, '２') 
-                    .replace(/3/i, '３') 
-                    .replace(/4/i, '４') 
-                    .replace(/5/i, '５') 
-                    .replace(/6/i, '６') 
-                    .replace(/7/i, '７') 
-                    .replace(/8/i, '８') 
-                    .replace(/9/i, '９') 
-                    .replace(/0/i, '０')
+                    .replace(/1段/i, '一段')
+                    .replace(/2段/i, '二段') 
+                    .replace(/3段/i, '三段') 
+                    .replace(/4段/i, '四段') 
+                    .replace(/5段/i, '五段') 
+                    .replace(/6段/i, '六段') 
+                    .replace(/7段/i, '七段') 
+                    .replace(/8段/i, '八段') 
+                    .replace(/9段/i, '九段') 
+                    .replace(/１段/i, '一段')                          
+                    .replace(/２段/i, '二段') 
+                    .replace(/３段/i, '三段') 
+                    .replace(/４段/i, '四段') 
+                    .replace(/５段/i, '五段') 
+                    .replace(/６段/i, '六段') 
+                    .replace(/７段/i, '七段') 
+                    .replace(/８段/i, '八段') 
+                    .replace(/９段/i, '九段') 
             vm.classes.push({
               name : rest["features"][i]["properties"].name,
               address : b,
