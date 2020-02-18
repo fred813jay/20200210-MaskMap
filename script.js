@@ -149,12 +149,19 @@ var vm = new Vue({
           return this.County+this.Zone
         }
         else {
-          return a
+          let c = this.County+this.Zone+'.*'+this.Road+'.*'             //將地址含有里村等字樣忽略
+          return c
         }
     },
     filter_post(){                               //filter
       return this.classes.filter(post => {
-        return post.address.includes(this.SearchAddress)
+        if (this.SearchAddress.indexOf('.') > 0){
+          let vobj = this.SearchAddress
+          return post.address.match(new RegExp(vobj))                   //使用正規表達式
+        }
+        else {
+          return post.address.includes(this.SearchAddress)
+        }
       })
     },
     page_total(){                               //總頁數
