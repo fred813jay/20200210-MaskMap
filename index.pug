@@ -41,13 +41,14 @@
       .col-xs-auto.col-sm-12.col-md-12.col-lg-10        
         h2.text-center 共查詢到: {{filter_post.length}} 筆資料 
         br    
+      .col-xs-auto.col-sm-12.col-md-12.col-lg-10   
         .div.text-center    
-          button.btn.btn-primary.btn-lg(v-if="page_total+1>10 && page_index >=10",@click="page_button(-10)") 上十頁
-          button.btn.btn-primary.btn-lg(v-if="page_index >0",@click="page_button(-1)") 上一頁
-          button.btn.btn-primary.btn-lg.mr-1(v-for="(page,id) in sliced_page_total",@click="page_index=page",:id="page",:class=" page_index==page? 'btn-info':'' ") {{page+1}}
-          button.btn.btn-primary.btn-lg(v-if="page_index < page_total",@click="page_button(+1)") 下一頁
+          button.btn.btn-primary.btn-lg.mr-3(v-if="page_total+1>10 && page_index >=10",@click="page_button(-10)") 上十頁
+          button.btn.btn-primary.btn-lg.mr-3(v-if="page_index >0",@click="page_button(-1)") 上一頁
+          button.btn.btn-primary.btn-lg.mr-3(v-if="page_index < page_total",@click="page_button(+1)") 下一頁
           button.btn.btn-primary.btn-lg(v-if="page_total+1>10 && page_total-page_index >=10",@click="page_button(+10)") 下十頁 
-        br  
+          br
+          button.btn.btn-primary.btn-lg.mr-3.mt-3.mb-3(v-for="(page,id) in sliced_page_total",@click="page_index=page",:id="page",:class=" page_index==page? 'btn-info':'' ") {{page+1}}
     .row.justify-content-center.align-items-center
       .col-xs-auto.col-sm-12.col-md-12.col-lg-10    
         .table-responsive
