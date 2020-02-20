@@ -17,7 +17,6 @@ var vm = new Vue({
     page_count: 15,
     page_index: '',
     page_num: [],
-    NowBtn: ''
   },
   mounted: function(){
     $.ajax({
@@ -170,7 +169,7 @@ var vm = new Vue({
     },
   },
   computed: { 
-    SearchAddress: function(){                             //將所有Selector字串合併
+    SearchAddress(){                             //將所有Selector字串合併
         let a = this.County+this.Zone+this.Road
         let b = ""
         this.page_index = 0;
