@@ -17,7 +17,6 @@ var vm = new Vue({
     page_count: 15,
     page_index: '',
     page_num: [],
-    NowBtn: ''
   },
   mounted: function(){
     $.ajax({
